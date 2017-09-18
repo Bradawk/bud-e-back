@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var db = mongoose.connection;
+let mongoose = require('mongoose');
+let db = mongoose.connection;
 
 mongoose.connect('mongodb://localhost:27017/datasetdb');
 

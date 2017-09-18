@@ -1,4 +1,4 @@
-var express     = require('express'),
+let express     = require('express'),
     path        = require('path'),
     favicon     = require('serve-favicon'),
     logger      = require('morgan'),
@@ -9,10 +9,10 @@ var express     = require('express'),
     cors        = require('cors');
 
 // ROUTE REGISTERING
-var index = require('./routes/index');
+let index = require('./routes/thing');
 
 // APP INIT
-var app = express();
+let app = express();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -26,7 +26,7 @@ app.use('/', index);
 
 // CATCH ERROR 
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
