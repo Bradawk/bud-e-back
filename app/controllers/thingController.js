@@ -16,14 +16,15 @@ exports.findOne = (req, res) => {
 
 exports.create = (req, res) => {
     Thing.create({
-        'ip': req.body.ip,
-        'mac': req.body.mac,
-        'name': req.body.name,
-        'type': req.body.type,
-        'func': req.body.func
+        'ip': '0.0.0.0',
+        'mac': '0:0:0:0:',
+        'name': 'My new Thing',
+        'type': 'Connected Device',
+        'func': 'Basic functionality',
+        'created_date': Date.now()
     }, (err, thing) => {
         if(err) res.status(400).json({'message':'Something went wrong during the thing creation.', 'error': err});
-        res.json(thing);
+        res.json({'thing': thing, 'message': 'Thing created with success.'});
     });
 }
 
@@ -36,11 +37,12 @@ exports.update = (req, res, next) => {
             'mac': req.body.mac,
             'name': req.body.name,
             'type': req.body.type,
-            'func': req.body.func
+            'func': req.body.func,
+            'update_date': Date.now()
         }
     },(err) => {
         if(err) res.status(400).json({"message":"No thing with the given ID.","error": err});
-        res.json({"message":"Thing updated with success.", 'thing': thing});
+        res.json({"message":"Thing saved with success.", 'thing': thing});
     });
 }
 

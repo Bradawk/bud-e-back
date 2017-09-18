@@ -9,7 +9,9 @@ let thingSchema = new Schema({
     mac : String,
     name : String,
     type : String,
-    func : Array
+    func : Array,
+    created_date: Date,
+    updated_date: Date
 });
 
 let Thing = mongoose.model('Thing', thingSchema);
