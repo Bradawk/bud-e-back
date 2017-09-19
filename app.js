@@ -13,6 +13,7 @@ let index = require('./routes/thing');
 
 // APP INIT
 let app = express();
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ app.use(cors());
 
 
 // ROUTES USED
-app.use('/', index);
+app.use('/things', index);
 
 // CATCH ERROR 
 app.use(function(req, res, next) {
