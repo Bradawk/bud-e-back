@@ -8,7 +8,7 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-    Thing.findOne({'_id': req.body.id},(err, thing) => {
+    Thing.findOne({'_id': req.params.id},(err, thing) => {
         if(err) res.status(400).json({'message':'Thing with the given ID not found.', 'error': err});
         res.json(thing);
     })
@@ -20,7 +20,6 @@ exports.create = (req, res) => {
         'mac': '0:0:0:0:',
         'name': 'My new Thing',
         'type': 'Connected Device',
-        'func': 'Basic functionality',
         'created_date': Date.now()
     }, (err, thing) => {
         if(err) res.status(400).json({'message':'Something went wrong during the thing creation.', 'error': err});
@@ -37,7 +36,6 @@ exports.update = (req, res, next) => {
             'mac': req.body.mac,
             'name': req.body.name,
             'type': req.body.type,
-            'func': req.body.func,
             'update_date': Date.now()
         }
     },(err) => {
