@@ -38,7 +38,7 @@ exports.update = (req, res, next) => {
             'type': req.body.type,
             'update_date': Date.now()
         }
-    },(err) => {
+    },(err, thing) => {
         if(err) res.status(400).json({"message":"No thing with the given ID.","error": err});
         res.json({"message":"Thing saved with success.", 'thing': thing});
     });
