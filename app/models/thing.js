@@ -9,6 +9,7 @@ let thingSchema = new Schema({
     mac : String,
     name : String,
     type : String,
+    state : Boolean,
     created_date: Date,
     updated_date: Date
 });
