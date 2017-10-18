@@ -1,15 +1,15 @@
 let gpio = require('rpi-gpio');
 
-gpio.setup(17, gpio.DIR_OUT, off);
+gpio.setup(12, gpio.DIR_OUT, off);
 
 function on() { 
-    gpio.write(17, true, function(err) { 
+    gpio.write(12, true, function(err) { 
         if (err) throw err; console.log('Written to pin'); 
     }); 
 }
 
 function off() { 
-    gpio.write(17, false, function(err) { 
+    gpio.write(12, false, function(err) { 
         if (err) throw err; console.log('Written to pin'); 
     }); 
 }
@@ -17,6 +17,11 @@ function off() {
 let state = 'off';
 
 exports.handleSpeechRequest = (req, res) =>{ 
-    state = 'on';
-    on();
+    if(req.body.action == "light_on"){
+        state = 'on';
+        on();
+    }else{
+        state = 'off';
+        off();
+    }
 }
