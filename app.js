@@ -9,7 +9,8 @@ let express     = require('express'),
     cors        = require('cors');
 
 // ROUTE REGISTERING
-let index = require('./routes/thing');
+let indexRoute = require('./routes/thing');
+let speechRoute = require('./routes/speech');
 
 // APP INIT
 let app = express();
@@ -23,7 +24,8 @@ app.use(cors());
 
 
 // ROUTES USED
-app.use('/', index);
+app.use('/', indexRoute);
+app.use('/speech', speechRoute);
 
 // CATCH ERROR 
 app.use(function(req, res, next) {

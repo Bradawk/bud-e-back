@@ -53,4 +53,3 @@ exports.delete = (req, res) => {
         res.json({'message':'Thing successfully deleted.'});
     })
 }
-

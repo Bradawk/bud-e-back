@@ -1,0 +1,4 @@
+applications:
+- name: bud-e
+  command: node bin/www
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
