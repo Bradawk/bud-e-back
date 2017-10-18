@@ -1,16 +1,8 @@
-let Gpio = require('onoff').Gpio;
-let led = new Gpio(4, 'out');
+let gpio = require('rpi-gpio');
 
 
 exports.handleSpeechRequest = (req, res) =>{ 
-    let action  = req.body.action;
-    
-    if(action == 'light_on'){
-        led.writeSync(1);
-        res.send()
-    }else{
-        led.writeSync(0);
-        led.unexport();
-        res.send()
-    }
+    gpio.read(4, function(err, value){
+        console.log('The value is '+ value);
+    });
 }
