@@ -3,6 +3,6 @@ let router = express.Router();
 let speechController = require('../app/controllers/speechController');
 
 router.route('/request')
-  .post(speechController.handleSpeechRequest);
+  .post(speechController.handleSpeechRequest)
 
 module.exports = router;
