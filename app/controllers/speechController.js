@@ -4,15 +4,13 @@ gpio.setup(12, gpio.DIR_OUT, off);
 
 function on() { 
     gpio.write(12, true, function(err) { 
-        if (err) throw err;
-        res.send("Allumé");
+        if (err) throw err; console.log('Written to pin'); 
     }); 
 }
 
 function off() { 
     gpio.write(12, false, function(err) { 
-        if (err) throw err;
-        res.send("Éteint"); 
+        if (err) throw err; console.log('Written to pin'); 
     }); 
 }
 
@@ -22,8 +20,10 @@ exports.handleSpeechRequest = (req, res) =>{
     if(req.body.action == "light_on"){
         state = 'on';
         on();
+        res.send('Allumé');
     }else if(req.body.action == 'light_off'){
         state = 'off';
         off();
+        res.send('Éteint');
     }
 }
