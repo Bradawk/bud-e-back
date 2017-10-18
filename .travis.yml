@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- 'stable'
+install:
+- npm install
+
+deploy:
+  provider: cloudfoundry
+  api: https://api.run.pivotal.io
+  username: horde.stygma@gmail.com
+  password:
+    secure: N3kX9ey4Ro1P6OjxkYUFiqOEFUDWTzxghHCI1nysx0dcUzb/jtU66jJJHKvF0ZExnRyFS4TFXTY3VfsSR+lIRC31Xaf7bstP71F4oDfi+5Qr7zyuklytpVuNJ7krqUJUhE3W5DrYh1uafqWei4dZ/lpxuMG9s/xkKgiaqQ9f7qXk2MVzsDP4FGCvT1IBi2OKwtqHgH7VK4SnPoUy2aitjgqL6La4Utyel/Dw0jlOIrea64mhIaTxiPRHwZVUiGFfVzSdMudEX7c8gkEPXlD2N62RblfTbYyw8GjJUtNinKsGe+Bign1f1WzgDxmnlMhMUWsAzZSWN4GxRcElUcBPX9YeJzjyML7OVQNHBFhoiQ2EFQk4NwXg7Fw8AzTq6hq+AjrBbeaz+Tt2e6sF/W4FebSTfDFN7c6mavsx3rJ8xfpVQyrOU4RFlf3MPektGds6td5wCIXpld8Pft8pZwXA8ixE+vwZasGpOXTgQyDVKmHXakBM3IIZd7fIJK+T7Z2R9EjbpCxdp1Ya8DiowS4QNqY0HaUb9XVXkDFVeCtcAb/XMrkHkZmJj9p0WFUGrIPJJ9OdRcPX/uXswudJCRjzK3l/6GlmkAHUCS8Mx+csK1zVzKXfP+E2wjLePAlymn9lG+RY6KE0ZTo3kQEcCeSnJk1DMpxcxoEUiTN1uro7hrs=
+  organization: bud-e
+  space: development
+  on:
+    repo: Bradawk/bud-e-back
+    branch: preprod
