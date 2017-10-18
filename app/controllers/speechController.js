@@ -20,7 +20,7 @@ exports.handleSpeechRequest = (req, res) =>{
     if(req.body.action == "light_on"){
         state = 'on';
         on();
-    }else{
+    }else if(req.body.action == 'light_off'){
         state = 'off';
         off();
     }
