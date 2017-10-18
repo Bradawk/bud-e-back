@@ -10,7 +10,6 @@ let express     = require('express'),
 
 // ROUTE REGISTERING
 let index = require('./routes/thing');
-let funcs = require('./routes/func');
 
 // APP INIT
 let app = express();
@@ -24,8 +23,7 @@ app.use(cors());
 
 
 // ROUTES USED
-app.use('/things', index);
-app.use('/funcs', funcs);
+app.use('/', index);
 
 // CATCH ERROR 
 app.use(function(req, res, next) {

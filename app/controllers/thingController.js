@@ -20,7 +20,10 @@ exports.create = (req, res) => {
         'mac': '0:0:0:0:',
         'name': 'My new Thing',
         'type': 'Connected Device',
-        'created_date': Date.now()
+        'state': 0,
+        'actions': ['action 1', 'action 2'],
+        'created_date': Date.now(),
+        'updated_date': Date.now()
     }, (err, thing) => {
         if(err) res.status(400).json({'message':'Something went wrong during the thing creation.', 'error': err});
         res.json({'thing': thing, 'message': 'Thing created with success.'});
