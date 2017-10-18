@@ -4,13 +4,15 @@ gpio.setup(12, gpio.DIR_OUT, off);
 
 function on() { 
     gpio.write(12, true, function(err) { 
-        if (err) throw err; console.log('Written to pin'); 
+        if (err) throw err;
+        res.send("Allumé");
     }); 
 }
 
 function off() { 
     gpio.write(12, false, function(err) { 
-        if (err) throw err; console.log('Written to pin'); 
+        if (err) throw err;
+        res.send("Éteint"); 
     }); 
 }
 
