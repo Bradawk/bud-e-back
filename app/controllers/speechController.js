@@ -1,29 +1,26 @@
-let gpio = require('rpi-gpio');
+let gpio        = require('rpi-gpio');
+let gpioUtils   = require('../utils/gpio');
+let state       = 'off';
 
-gpio.setup(12, gpio.DIR_OUT, off);
+let pin         = 12; 
 
-function on() { 
-    gpio.write(12, true, function(err) { 
-        if (err) throw err; console.log('Written to pin'); 
-    }); 
-}
+// TODO REPLACE PIN BY OBJECT
 
-function off() { 
-    gpio.write(12, false, function(err) { 
-        if (err) throw err; console.log('Written to pin'); 
-    }); 
-}
-
-let state = 'off';
-
-exports.handleSpeechRequest = (req, res) =>{ 
-    if(req.body.action == "light_on"){
-        state = 'on';
-        on();
-        res.send('Allumé');
-    }else if(req.body.action == 'light_off'){
-        state = 'off';
-        off();
-        res.send('Éteint');
-    }
+exports.handleSpeechRequest = (req, res) =>{
+    gpio.read(pin, function(err, value) {
+        if(err){
+            console.log('Check the raspberry connection.');
+            res.status(500).send('Can\'t read pin value.');
+        }else{
+            if(req.body.action == 'light_on'){
+                state = 'on';
+                on(pin, req.body.room);
+                res.status(200).json({"message": pin + "in "+ req.body.room + " is on.", "status": 1});
+            }else if(req.body.action == 'light_off'){
+                state = 'off';
+                on(pin, req.body.room);
+                res.status(200).json({"message": pin + "in "+ req.body.room + " is off.", "status": 0});
+            }
+        }
+    });
 }
