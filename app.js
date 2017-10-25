@@ -6,11 +6,24 @@ let express     = require('express'),
     bodyParser  = require('body-parser'),
     mongoose    = require('mongoose'),
     db          = require('./app/models/db'),
-    cors        = require('cors');
+    cors        = require('cors')
+    nmap        = require('libnmap');
+
+
+// NMAP VARS
+let options = {
+  // TO CHANGE
+  range:[
+    '192.168.43.0-255'
+  ]
+}
+
+
 
 // ROUTE REGISTERING
 let indexRoute = require('./routes/thing');
 let speechRoute = require('./routes/speech');
+let connectionRoute = require('./routes/connection')
 
 // APP INIT
 let app = express();
@@ -26,6 +39,7 @@ app.use(cors());
 // ROUTES USED
 app.use('/', indexRoute);
 app.use('/speech', speechRoute);
+app.use('/connection', connectionRoute);
 
 // CATCH ERROR 
 app.use(function(req, res, next) {
