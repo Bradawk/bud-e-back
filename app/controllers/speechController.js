@@ -1,5 +1,5 @@
-let gpio = require('rpi-gpio');
-let gpioUtils = require('../utils/gpio');
+// let gpio = require('rpi-gpio');
+// let gpioUtils = require('../utils/gpio');
 let state = 'off';
 let pin = 12;
 let conn = require('./connectionController');

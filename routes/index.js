@@ -1,6 +1,8 @@
-let express = require('express');
-let router = express.Router();
+let express         = require('express');
+let router          = express.Router();
 let thingController = require('../app/controllers/thingController');
+let app             = require('../app')
+let jwt             = require('jsonwebtoken')
 
 router.route('/')
   .get(thingController.findAll)

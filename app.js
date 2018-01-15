@@ -7,7 +7,9 @@ let express     = require('express'),
     mongoose    = require('mongoose'),
     db          = require('./app/models/db'),
     cors        = require('cors')
-    nmap        = require('libnmap');
+    nmap        = require('libnmap')
+    jwt         = require('jsonwebtoken')
+    config      = require('./config')
 
 
 // NMAP VARS
@@ -18,10 +20,9 @@ let options = {
   ]
 }
 
-
-
 // ROUTE REGISTERING
-let indexRoute = require('./routes/thing');
+let usersRoute = require('./routes/users')
+let indexRoute = require('./routes/index');
 let speechRoute = require('./routes/speech');
 let connectionRoute = require('./routes/connection')
 
@@ -37,6 +38,28 @@ app.use(cors());
 
 
 // ROUTES USED
+app.use('/users', usersRoute);
+
+// AUTHENTICATION MIDDLEWARE
+app.use(function(req, res, next) {
+	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+	if (token) {
+		jwt.verify(token, config.secret, function(err, decoded) {			
+			if (err) {
+				res.status(400).json({ success: false, message: 'Failed to authenticate token.' });		
+			} else {
+				req.decoded = decoded;	
+				next();
+			}
+		});
+	} else {
+		return res.status(403).send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+	}
+});
+
 app.use('/', indexRoute);
 app.use('/speech', speechRoute);
 app.use('/connection', connectionRoute);
